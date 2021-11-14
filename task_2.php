@@ -14,6 +14,9 @@ $height = 100;
 		div{
 			margin-top: 20px;
 		}
+		img{
+			border: 1px solid black;
+		}
 		</style>
 	</head>
 	<body>
@@ -26,7 +29,7 @@ $height = 100;
 			Важно: решение требует использования PHP, сжатие картинки средствами HTML/CSS является некорректным решением.
 		</div>
 		<div class="answer">
-			<?=my_resize($base_img,$width,$height)?>
+			<?my_resize($base_img,$width,$height)?>
 			<img src="result.png" alt="">
 		</div>
 	</body>
@@ -36,38 +39,35 @@ $height = 100;
 <?
 function my_resize($img,$target_width,$target_height){
 
-	if ($target_height > $target_width) {
-		// code...
-	}
-
 	$size = getimagesize($img); 
 	if ($size){
 		list($width, $height) = getimagesize($img);
 
-		if ($width == $height) {
-			$target_width = ($target_height > $target_width)?$target_height:$target_width;
-			$target_height = ($target_height > $target_width)?$target_width:$target_height;
-		}
-
-		echo $width."/".$height;
-
 		$srcImage = imageCreateFromPng($img);
 		$result_img = imageCreateTrueColor($target_width, $target_height);
 	
-		imagealphablending($result_img, false);
-		 
-		//Включаем сохранение альфа канала
-		imagesavealpha($result_img, true);
+		imagealphablending($result_img, true); 
+		imageSaveAlpha($result_img, true);
+		$transparent = imagecolorallocatealpha($result_img, 0, 0, 0, 127); 
+		imagefill($result_img, 0, 0, $transparent); 
+		imagecolortransparent($result_img, $transparent); 
 
-		imagecopyresampled($result_img, $srcImage, 0, 0, 0, 0, $target_width, $target_height, $width, $height);
+		$new_width = ceil($target_height / ($height / $width));
+		$new_height = ceil($target_width / ($width / $height));
 
+		if ($new_width < $target_width) {
+			imageCopyResampled($result_img, $srcImage, ceil(($target_width - $new_width) / 2), 0, 0, 0, $new_width, $target_height, $width, $height);        
+		} else {
+			imageCopyResampled($result_img, $srcImage, 0, ceil(($target_height - $new_height) / 2), 0, 0, $target_width, $new_height, $width, $height);    
+		}   
 		// СОЗДАЁМ
-		return imagepng($result_img, 'result.png', -1); 
-
+		return imagepng($result_img, 'result.png', 9); 
+		
 		} else {
 		exit("изображение не найдено");
 		}
 }
-
-
 ?>
+
+
+  
