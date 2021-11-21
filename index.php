@@ -20,4 +20,5 @@
 	<a class="link" href="task_2.php">Задание 2</a>
 	<a class="link" href="task_3.php">Задание 3</a>
 	<a class="link" href="task_4.php">Задание 4</a>
+	<a class="link" href="task_5.php">Задание Пределка меню видео отчет</a>
 </div>
