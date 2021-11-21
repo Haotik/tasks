@@ -23,38 +23,13 @@ while (count($array) < 100) {
 			Переделать меню основное и мобильное под новый вариант из фигмы
 		</div>
 		<div class="before">
-			<video src="" controls></video>
+			<video src="video/lumiatex_menu/before.mp4" controls></video>
 		</div>
 		<div class="after">
-			<video src="" controls></video>
+			<video src="video/lumiatex_menu/after.mp4"controls></video>
+		</div>
+		<div class="figma">
+			<video src="video/lumiatex_menu/figma.mp4"controls></video>
 		</div>
 	</body>
 </html>
-
-<?
-function count_pairs($array){
-	$max_chain = 0;
-	$chain = 0;
-	$result = 0;
-	for ($i=0; $i < count($array); $i++) { 
-		$c = $i+1;
-		while($array[$i] == $array[$c]){
-			$c++;
-			$chain++;
-		}
-
-		if ($chain > $max_chain) {
-			$max_chain = $chain;
-		}
-
-		if ($chain > 0) {
-			echo 'Элемент №'.$i." цепочка ". $chain."<br>";
-			$result += $chain;
-		}
-
-		$i = $c-1;	
-		$chain = 0;
-		}
-
-	echo "Максимальная цепочка: ". $max_chain ." пары <br> Всего пар: ".$result;
-}
