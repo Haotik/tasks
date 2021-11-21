@@ -1,10 +1,3 @@
-<?
-$array = [];
-while (count($array) < 100) {
-	$array[] = rand(0,20);
-}
-
-?>
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
@@ -15,6 +8,15 @@ while (count($array) < 100) {
 		div{
 			margin-top: 20px;
 		}
+		video{
+			max-width: 40%;
+		}
+		body{
+			display: flex;
+			flex-wrap: wrap;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
 		</style>
 	</head>
 	<body>
@@ -23,12 +25,15 @@ while (count($array) < 100) {
 			Переделать меню основное и мобильное под новый вариант из фигмы
 		</div>
 		<div class="before">
+			<h4>До</h4>
 			<video src="video/lumiatex_menu/before.mp4" controls></video>
 		</div>
 		<div class="after">
+			<h4>После</h4>
 			<video src="video/lumiatex_menu/after.mp4"controls></video>
 		</div>
 		<div class="figma">
+			<h4>Макет</h4>
 			<video src="video/lumiatex_menu/figma.mp4"controls></video>
 		</div>
 	</body>
